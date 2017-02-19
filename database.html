@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>This is a database!</h1>
+<table style="width:100%">
+   <tr>
+	<th>Username</th>
+	<th>concert</th>
+   </tr>
+{% for post in posts %}
+<p>
+{{post.author.username }} went to <b> {{post.body}} </b>
+</p>
+{% endfor %}
+
+{% endblock %}
