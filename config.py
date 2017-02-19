@@ -11,4 +11,4 @@ OPENID_PROVIDERS = [
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-SQLALCHEMY_DATABASE_URI = 'mysql://concertapp:hackfsu@localhost:3306/concert'
+SQLALCHEMY_DATABASE_URI = '$DATABASE_URL'
