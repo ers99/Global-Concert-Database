@@ -53,7 +53,24 @@ def after_login(resp):
 	login_user(user, remember = remember_me)
 	return redirect(request.args.get('next') or url_for('index'))
 
+@app.route('/logout')
+def logout():
+	logout_user()
+	return redirect(url_for('index'))
 
 @lm.user_loader
 def load_user(id):
 	return User.query.get(int(id))
+
+@app.route('/user/<username>')
+@login_required
+def user(username):
+	user = User.query.filter_by(username=username).first()
+	if user == None:
+		flash('User %s not found.' % nickname)
+		return redirect(url_for('index'))
+	posts = [
+	{'author': user, 'body': 'Test post #1'},
+	{'author': user, 'body': 'Test post #2'}
+	]
+	return render_template('user.html',user=user, posts=posts)
